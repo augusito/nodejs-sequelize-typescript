@@ -4,6 +4,8 @@ import { AuthorModel } from './author/author.model';
 import { AuthorInstance } from './author/types';
 import { BookModel } from './book/book.model';
 import { BookInstance } from './book/types';
+import { AuthorService } from './author/author.service';
+import { BookService } from './book/book.service';
 async function main() {
   const sequelize = new SequelizeAdapter({
     dialect: 'sqlite',
@@ -33,32 +35,17 @@ async function main() {
   sequelize.addModels([AuthorModel, BookModel]);
   await sequelize.sync({ force: true });
 
-  type ModelList = {
-    Author: ModelStatic<AuthorInstance>;
-    Book: ModelStatic<BookInstance>;
-  };
+  const authorService = new AuthorService(sequelize);
 
-  const { Author, Book } = sequelize.models as ModelList;
+  await authorService.createAuthor({ name: 'Kate Chopin' });
+  await authorService.createAuthor({ name: 'Paul Auster' });
 
-  await Author.bulkCreate([
-    {
-      name: 'Kate Chopin',
-    },
-    { name: 'Paul Auster' },
-  ]);
-  await Book.bulkCreate([
-    {
-      title: 'The Awakening',
-      author_id: 1,
-    },
-    {
-      title: 'City of Glass',
-      author_id: 2,
-    },
-  ]);
+  const bookService = new BookService(sequelize);
+  await bookService.createBook({ author_id: 1, title: 'The Awakening' });
+  await bookService.createBook({ author_id: 2, title: 'City of Glass' });
 
-  const authors = await Author.findAll({ include: [{ model: Book }] });
-  const books = await Book.findAll({ include: [{ model: Author }] });
+  const authors = await authorService.getAuthorList();
+  const books = await bookService.getBookList();
 
   console.log(JSON.stringify(authors, null, 2));
   console.log(JSON.stringify(books, null, 2));

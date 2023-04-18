@@ -1,4 +1,5 @@
-import { Model, Optional } from 'sequelize';
+import { Model, ModelStatic, Optional } from 'sequelize';
+import { AuthorInstance } from '../author/types';
 
 export interface BookAttributes {
   id: number;
@@ -7,5 +8,10 @@ export interface BookAttributes {
 }
 
 export interface BookInstance
-  extends Model<BookAttributes, Optional<BookAttributes, 'id' | 'author_id'>>,
+  extends Model<BookAttributes, Optional<BookAttributes, 'id'>>,
     BookAttributes {}
+
+export type BookModelList = {
+  Book: ModelStatic<BookInstance>;
+  Author: ModelStatic<AuthorInstance>;
+};
