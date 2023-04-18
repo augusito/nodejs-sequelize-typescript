@@ -38,6 +38,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@hemjs/notions": "^0.1.1",
     "sequelize": "^6.31.0",
     "sqlite3": "^5.1.6"
   }
