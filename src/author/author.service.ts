@@ -25,7 +25,7 @@ export class AuthorService {
       include: [{ model: this.models.Book }],
     });
 
-    const hydratedAuthors: Author[] = authors.map((author) => {
+    const hydratedAuthors = authors.map((author) => {
       const authorJSON = this.hydrator.extract(author);
       const hydratedAuthor = new Author();
       this.hydrator.hydrate(authorJSON, hydratedAuthor);

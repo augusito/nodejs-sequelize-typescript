@@ -1,11 +1,9 @@
-import { ModelStatic } from 'sequelize';
-import { SequelizeAdapter } from './sequelize/sequelize-adapter';
 import { AuthorModel } from './author/author.model';
-import { AuthorInstance } from './author/types';
-import { BookModel } from './book/book.model';
-import { BookInstance } from './book/types';
 import { AuthorService } from './author/author.service';
+import { BookModel } from './book/book.model';
 import { BookService } from './book/book.service';
+import { SequelizeAdapter } from './sequelize/sequelize-adapter';
+
 async function main() {
   const sequelize = new SequelizeAdapter({
     dialect: 'sqlite',
@@ -32,6 +30,7 @@ async function main() {
       updatedAt: 'updated_at',
     },
   });
+
   sequelize.addModels([AuthorModel, BookModel]);
   await sequelize.sync({ force: true });
 
@@ -50,6 +49,7 @@ async function main() {
   console.log(JSON.stringify(authors, null, 2));
   console.log(JSON.stringify(books, null, 2));
 }
+
 main().catch((err) => {
   console.error(err);
 });
