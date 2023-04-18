@@ -36,5 +36,9 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "sequelize": "^6.31.0",
+    "sqlite3": "^5.1.6"
   }
 }
