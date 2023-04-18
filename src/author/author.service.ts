@@ -1,4 +1,6 @@
 import { Sequelize } from 'sequelize';
+import { Hydrator } from '../common/hydrator';
+import { Author } from './author.entity';
 import { AuthorModelList } from './types';
 
 export class AuthorDto {
@@ -11,20 +13,36 @@ export class AuthorDto {
 
 export class AuthorService {
   private readonly models: AuthorModelList;
+  private readonly hydrator: Hydrator;
 
   constructor(readonly sequelize: Sequelize) {
     this.models = sequelize.models as AuthorModelList;
+    this.hydrator = new Hydrator();
   }
 
-  async getAuthorList() {
+  async getAuthorList(): Promise<Author[]> {
     const authors = await this.models.Author.findAll({
       include: [{ model: this.models.Book }],
     });
-    return authors;
+
+    const hydratedAuthors: Author[] = authors.map((author) => {
+      const authorJSON = this.hydrator.extract(author);
+      const hydratedAuthor = new Author();
+      this.hydrator.hydrate(authorJSON, hydratedAuthor);
+
+      return hydratedAuthor;
+    });
+
+    return hydratedAuthors;
   }
 
-  async createAuthor(authorDto: AuthorDto) {
+  async createAuthor(authorDto: AuthorDto): Promise<Author> {
     const author = await this.models.Author.create({ name: authorDto.name });
-    return author;
+
+    const authorJSON = this.hydrator.extract(author);
+    const hydratedAuthor = new Author();
+    this.hydrator.hydrate(authorJSON, hydratedAuthor);
+
+    return hydratedAuthor;
   }
 }

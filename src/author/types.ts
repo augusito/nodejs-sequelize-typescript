@@ -14,3 +14,10 @@ export type AuthorModelList = {
   Author: ModelStatic<AuthorInstance>;
   Book: ModelStatic<BookInstance>;
 };
+
+export interface AuthorJSON {
+  id: number;
+  name: string;
+  created_at: Date;
+  updated_at: Date;
+}
