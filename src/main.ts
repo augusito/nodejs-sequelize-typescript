@@ -43,8 +43,8 @@ async function main() {
   await bookService.createBook({ author_id: 1, title: 'The Awakening' });
   await bookService.createBook({ author_id: 2, title: 'City of Glass' });
 
-  const authors = await authorService.getAuthorList();
-  const books = await bookService.getBookList();
+  const authors = await authorService.getAuthorList(1, 2);
+  const books = await bookService.getBookList(1, 2);
 
   console.log(JSON.stringify(authors, null, 2));
   console.log(JSON.stringify(books, null, 2));

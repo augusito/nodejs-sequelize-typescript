@@ -1,5 +1,6 @@
 import { Model, ModelStatic, Optional } from 'sequelize';
 import { AuthorInstance, AuthorJSON } from '../author/types';
+import { Book } from './book.entity';
 
 export interface BookAttributes {
   id: number;
@@ -22,4 +23,11 @@ export interface BookJSON {
   author?: AuthorJSON;
   created_at: Date;
   updated_at: Date;
+}
+
+export interface BookListJSON {
+  data: Book[];
+  page: number;
+  per_page: number;
+  total: number;
 }
