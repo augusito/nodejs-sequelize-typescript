@@ -1,6 +1,6 @@
-import { Model, ModelStatic, Optional } from 'sequelize';
-import { AuthorInstance, AuthorJSON } from '../author/types';
-import { Book } from './book.entity';
+import type { Model, ModelStatic, Optional } from 'sequelize';
+import type { AuthorInstance, AuthorJSON } from '../author/types';
+import type { Book } from './book.entity';
 
 export interface BookAttributes {
   id: number;
@@ -17,12 +17,17 @@ export type BookModelList = {
   Author: ModelStatic<AuthorInstance>;
 };
 
+export interface BookDto {
+  author_id: number;
+  title: string;
+}
+
 export interface BookJSON {
   id: number;
   title: string;
   author?: AuthorJSON;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export interface BookListJSON {

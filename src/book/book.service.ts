@@ -1,18 +1,13 @@
-import { Sequelize } from 'sequelize';
+import type { Sequelize } from 'sequelize';
 import { Hydrator } from '../common/hydrator';
 import { Pageable } from '../common/pageable';
 import { Book } from './book.entity';
-import { BookInstance, BookListJSON, BookModelList } from './types';
-
-export class BookDto {
-  readonly author_id: number;
-  readonly title: string;
-
-  constructor(payload: any) {
-    this.author_id = payload.author_id;
-    this.title = payload.title;
-  }
-}
+import type {
+  BookDto,
+  BookInstance,
+  BookListJSON,
+  BookModelList,
+} from './types';
 
 export class BookService {
   private readonly models: BookModelList;

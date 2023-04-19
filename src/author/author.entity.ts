@@ -1,4 +1,4 @@
-import { AuthorJSON } from './types';
+import type { AuthorJSON } from './types';
 
 export class Author {
   public id: number;

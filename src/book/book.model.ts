@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { AuthorModel } from '../author/author.model';
-import { ModelProvider } from '../sequelize/types';
+import type { ModelProvider } from '../sequelize/types';
 
 export const BookModel: ModelProvider = {
   modelName: 'Book',

@@ -1,16 +1,13 @@
-import { Sequelize } from 'sequelize';
+import type { Sequelize } from 'sequelize';
 import { Hydrator } from '../common/hydrator';
 import { Pageable } from '../common/pageable';
 import { Author } from './author.entity';
-import { AuthorInstance, AuthorListJSON, AuthorModelList } from './types';
-
-export class AuthorDto {
-  readonly name: string;
-
-  constructor(payload: any) {
-    this.name = payload.name;
-  }
-}
+import type {
+  AuthorDto,
+  AuthorInstance,
+  AuthorListJSON,
+  AuthorModelList,
+} from './types';
 
 export class AuthorService {
   private readonly models: AuthorModelList;

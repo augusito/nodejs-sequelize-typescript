@@ -1,5 +1,5 @@
 import { Author } from '../author/author.entity';
-import { BookJSON } from './types';
+import type { BookJSON } from './types';
 
 export class Book {
   public id: number;

@@ -1,6 +1,6 @@
-import { Model, ModelStatic, Optional } from 'sequelize';
-import { BookInstance } from '../book/types';
-import { Author } from './author.entity';
+import type { Model, ModelStatic, Optional } from 'sequelize';
+import type { BookInstance } from '../book/types';
+import type { Author } from './author.entity';
 
 export interface AuthorAttributes {
   id: number;
@@ -15,6 +15,10 @@ export type AuthorModelList = {
   Author: ModelStatic<AuthorInstance>;
   Book: ModelStatic<BookInstance>;
 };
+
+export interface AuthorDto {
+  readonly name: string;
+}
 
 export interface AuthorJSON {
   id: number;
