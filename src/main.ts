@@ -48,6 +48,25 @@ async function main() {
 
   console.log(JSON.stringify(authors, null, 2));
   console.log(JSON.stringify(books, null, 2));
+
+  const updatedAuthor = await authorService.updateAuthor(2, {
+    name: 'Paul Graham',
+  });
+  console.log(JSON.stringify(updatedAuthor, null, 2));
+
+  const deletedAuthor = await authorService.deleteAuthor(2);
+  console.log(JSON.stringify(deletedAuthor, null, 2));
+
+  const book2 = await bookService.getBook(2);
+  console.log(JSON.stringify(book2, null, 2));
+
+  const updatedBook = await bookService.updateBook(2, {
+    author_id: 1,
+  });
+  console.log(JSON.stringify(updatedBook, null, 2));
+
+  const deletedBook = await bookService.deleteBook(2);
+  console.log(JSON.stringify(deletedBook, null, 2));
 }
 
 main().catch((err) => {

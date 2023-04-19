@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { SequelizeAdapter } from './sequelize-adapter';
-import { ModelProvider } from './types';
+import type { ModelProvider } from './types';
 
 describe('SequelizeAdapter', () => {
   let adapter: SequelizeAdapter;

@@ -1,6 +1,6 @@
 import { isUndefined } from '@hemjs/notions';
 import { ModelStatic, Sequelize } from 'sequelize';
-import {
+import type {
   Association,
   BelongsToManyAssociation,
   BelongsToAssociation,

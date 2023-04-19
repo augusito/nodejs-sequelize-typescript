@@ -5,12 +5,12 @@ import type { ModelProvider } from '../sequelize/types';
 export const BookModel: ModelProvider = {
   modelName: 'Book',
   attributes: {
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     author_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -29,7 +29,7 @@ export const BookModel: ModelProvider = {
           onUpdate: 'CASCADE',
           foreignKey: {
             name: 'author_id',
-            allowNull: false,
+            allowNull: true,
           },
         },
       },

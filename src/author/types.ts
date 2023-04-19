@@ -17,7 +17,7 @@ export type AuthorModelList = {
 };
 
 export interface AuthorDto {
-  readonly name: string;
+  name: string;
 }
 
 export interface AuthorJSON {

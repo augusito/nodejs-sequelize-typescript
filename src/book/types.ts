@@ -4,7 +4,7 @@ import type { Book } from './book.entity';
 
 export interface BookAttributes {
   id: number;
-  author_id: number;
+  author_id?: number;
   title: string;
 }
 
@@ -18,7 +18,7 @@ export type BookModelList = {
 };
 
 export interface BookDto {
-  author_id: number;
+  author_id?: number;
   title: string;
 }
 
